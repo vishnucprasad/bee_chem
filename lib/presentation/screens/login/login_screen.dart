@@ -1,5 +1,7 @@
+import 'package:bee_chem_app/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bee_chem_app/presentation/screens/login/widgets/login_input_field.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -112,7 +114,7 @@ class LoginScreen extends StatelessWidget {
                     ],
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => context.go(HomeScreen.routePath),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.amber,
                       minimumSize: Size(double.infinity, 48),

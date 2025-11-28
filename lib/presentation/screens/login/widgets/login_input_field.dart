@@ -39,7 +39,7 @@ class LoginInputField extends HookWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withValues(alpha: 0.4),
+                    color: Colors.grey.withValues(alpha: 0.2),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -98,7 +98,7 @@ class LoginInputField extends HookWidget {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withValues(alpha: 0.4),
+                  color: Colors.grey.withValues(alpha: 0.2),
                   blurRadius: 10,
                   spreadRadius: 1,
                   offset: const Offset(2, 2),
