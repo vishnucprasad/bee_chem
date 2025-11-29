@@ -1,4 +1,5 @@
 import 'package:bee_chem_app/application/auth/auth_bloc.dart';
+import 'package:bee_chem_app/application/personal_details/personal_details_bloc.dart';
 import 'package:bee_chem_app/core/di/injection.dart';
 import 'package:bee_chem_app/presentation/router/router.dart';
 import 'package:bee_chem_app/presentation/themes/light_theme.dart';
@@ -22,6 +23,7 @@ class BeeChemApp extends StatelessWidget {
         BlocProvider(
           create: (_) => getIt<AuthBloc>()..add(AuthEvent.authCheckRequested()),
         ),
+        BlocProvider(create: (_) => getIt<PersonalDetailsBloc>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

@@ -1,4 +1,6 @@
+import 'package:bee_chem_app/application/personal_details/personal_details_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({super.key});
@@ -22,6 +24,11 @@ class SearchBox extends StatelessWidget {
               ],
             ),
             child: TextFormField(
+              onChanged: (query) {
+                context.read<PersonalDetailsBloc>().add(
+                  PersonalDetailsEvent.searchQueryChanged(searchQuery: query),
+                );
+              },
               style: const TextStyle(
                 color: Color(0xFF534F4F),
                 fontWeight: FontWeight.w500,
@@ -44,7 +51,11 @@ class SearchBox extends StatelessWidget {
         SizedBox.square(
           dimension: 50,
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<PersonalDetailsBloc>().add(
+                PersonalDetailsEvent.filterBySearchQuery(),
+              );
+            },
             icon: Text(
               'GO',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),

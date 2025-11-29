@@ -1,4 +1,5 @@
 import 'package:bee_chem_app/application/auth/auth_bloc.dart';
+import 'package:bee_chem_app/application/personal_details/personal_details_bloc.dart';
 import 'package:bee_chem_app/domain/auth/failures/auth_failure.dart';
 import 'package:bee_chem_app/presentation/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,9 @@ class LoginScreen extends StatelessWidget {
                     );
                   },
                   (r) {
+                    context.read<PersonalDetailsBloc>().add(
+                      PersonalDetailsEvent.getPersonalDetails(),
+                    );
                     context.go(HomeScreen.routePath);
                   },
                 ),

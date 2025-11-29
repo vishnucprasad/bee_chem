@@ -1,7 +1,10 @@
+import 'package:bee_chem_app/domain/personal_details/personal_details.dart';
 import 'package:flutter/material.dart';
 
 class PersonalDetailsListItem extends StatelessWidget {
-  const PersonalDetailsListItem({super.key});
+  const PersonalDetailsListItem({super.key, required this.personalDetails});
+
+  final PersonalDetails personalDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -29,25 +32,42 @@ class PersonalDetailsListItem extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Esther Howard',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                Flexible(
+                  child: Text(
+                    '${personalDetails.firstName} ${personalDetails.lastName ?? ''}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.green, width: 2),
+                    border: Border.all(
+                      color: personalDetails.status ? Colors.green : Colors.red,
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.circle, color: Colors.green, size: 8),
+                      Icon(
+                        Icons.circle,
+                        color: personalDetails.status
+                            ? Colors.green
+                            : Colors.red,
+                        size: 8,
+                      ),
                       const SizedBox(width: 4),
                       Text(
-                        'Active',
+                        personalDetails.status ? 'Active' : 'Inactive',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.green,
+                          color: personalDetails.status
+                              ? Colors.green
+                              : Colors.red,
                           fontWeight: FontWeight.w900,
                         ),
                       ),
@@ -64,9 +84,11 @@ class PersonalDetailsListItem extends StatelessWidget {
                   size: 18,
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  '1700 654 654',
-                  style: TextStyle(color: Colors.grey.shade600),
+                Flexible(
+                  child: Text(
+                    personalDetails.contactNumber ?? 'null',
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ),
                 ),
                 SizedBox(width: 4),
                 Icon(Icons.circle, color: Colors.grey, size: 6),
@@ -74,7 +96,9 @@ class PersonalDetailsListItem extends StatelessWidget {
                 Icon(Icons.person, color: Colors.grey.shade600, size: 20),
                 const SizedBox(width: 4),
                 Text(
-                  'Colony Owner',
+                  personalDetails.roleDetails.isNotEmpty
+                      ? personalDetails.roleDetails.first.role
+                      : 'null',
                   style: TextStyle(color: Colors.grey.shade600),
                 ),
               ],
@@ -90,7 +114,7 @@ class PersonalDetailsListItem extends StatelessWidget {
                 const SizedBox(width: 4),
                 Expanded(
                   child: Text(
-                    '6301 Samarinda, Queens Street, Queensland, Australia',
+                    personalDetails.address ?? 'null',
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(color: Colors.grey.shade600),
