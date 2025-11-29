@@ -1,0 +1,21 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'login_credentials.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_LoginCredentials _$LoginCredentialsFromJson(Map<String, dynamic> json) =>
+    _LoginCredentials(
+      email: json['email'] as String,
+      password: json['password'] as String,
+      mobUser: json['mob_user'] as String? ?? '1',
+    );
+
+Map<String, dynamic> _$LoginCredentialsToJson(_LoginCredentials instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+      'mob_user': instance.mobUser,
+    };

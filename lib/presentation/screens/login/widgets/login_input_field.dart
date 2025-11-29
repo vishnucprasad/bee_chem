@@ -7,6 +7,9 @@ class LoginInputField extends HookWidget {
     required this.prefixIcon,
     required this.hintText,
     this.isPassword = false,
+    this.validator,
+    this.autovalidateMode = AutovalidateMode.onUnfocus,
+    this.onChanged,
   });
 
   final _textFieldSize = 50.0;
@@ -15,10 +18,13 @@ class LoginInputField extends HookWidget {
   final IconData prefixIcon;
   final String hintText;
   final bool isPassword;
+  final FormFieldValidator<String?>? validator;
+  final AutovalidateMode autovalidateMode;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    final obscureTextNotifier = useState<bool>(true);
+    final obscureTextNotifier = useState<bool>(isPassword);
 
     return SizedBox(
       height: _iconContainerSize,
@@ -54,6 +60,9 @@ class LoginInputField extends HookWidget {
                   Expanded(
                     child: TextFormField(
                       obscureText: obscureTextNotifier.value,
+                      validator: validator,
+                      onChanged: onChanged,
+                      autovalidateMode: autovalidateMode,
                       style: const TextStyle(
                         color: Color(0xFF534F4F),
                         fontWeight: FontWeight.w500,
