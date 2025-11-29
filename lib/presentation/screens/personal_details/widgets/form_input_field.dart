@@ -9,6 +9,9 @@ class FormInputField extends StatelessWidget {
     this.suffixIcon,
     this.maxLines,
     this.maxLength,
+    this.validator,
+    this.autovalidateMode = AutovalidateMode.onUnfocus,
+    this.onChanged,
   });
 
   final String label;
@@ -17,6 +20,9 @@ class FormInputField extends StatelessWidget {
   final Widget? suffixIcon;
   final int? maxLines;
   final int? maxLength;
+  final FormFieldValidator<String>? validator;
+  final AutovalidateMode? autovalidateMode;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +32,9 @@ class FormInputField extends StatelessWidget {
         Text(label, style: TextStyle(fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
         TextFormField(
+          onChanged: onChanged,
+          validator: validator,
+          autovalidateMode: autovalidateMode,
           style: const TextStyle(
             color: Color(0xFF534F4F),
             fontWeight: FontWeight.w500,

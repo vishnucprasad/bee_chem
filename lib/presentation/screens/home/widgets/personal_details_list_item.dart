@@ -26,7 +26,7 @@ class PersonalDetailsListItem extends StatelessWidget {
           ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.amber,
-              radius: 26,
+              radius: 24,
               child: Icon(Icons.people_outline),
             ),
             title: Row(
